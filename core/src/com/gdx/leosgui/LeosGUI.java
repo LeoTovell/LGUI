@@ -22,14 +22,19 @@ public class LeosGUI extends ApplicationAdapter {
 		batch = new SpriteBatch();
 		sr = new ShapeRenderer();
 		
-		LButton button = new LButton("MyButton",100, 100, 200, 50, Color.RED, ShapeType.Filled);
+		LButton button = new LButton("Hover to change colour",100, 100, 200, 50, Color.RED, ShapeType.Filled);
+		button.setClickedText("Clicked");
+		button.setDefaultText("Default");
+		button.setHoverText("Hover");
 		buttonList.add(button);
+		button = new LButton("Hover to change colour",100, 100, 200, 50, Color.RED, ShapeType.Filled);
 		
 	}
 
 	@Override
 	public void render () {
 		ScreenUtils.clear(Color.WHITE);
+		
 		for(LButton button: buttonList) {
 			button.setFont("AmaticSC-Regular.ttf", Color.GREEN);
 			button.draw(sr, batch);
