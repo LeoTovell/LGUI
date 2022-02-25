@@ -14,7 +14,8 @@ public class LeosGUI extends ApplicationAdapter {
 	SpriteBatch batch;
 	ShapeRenderer sr;
 	LButton button;
-	ArrayList<LButton> buttonList = new ArrayList<>();
+	ArrayList<LButton> elementList = new ArrayList<>();
+	ArrayList<LSlider> sliderList = new ArrayList<>();
 	
 	@Override
 	public void create () {
@@ -22,12 +23,16 @@ public class LeosGUI extends ApplicationAdapter {
 		batch = new SpriteBatch();
 		sr = new ShapeRenderer();
 		
-		LButton button = new LButton("Hover to change colour",100, 100, 200, 50, Color.RED, ShapeType.Filled);
-		button.setClickedText("Clicked");
-		button.setDefaultText("Default");
-		button.setHoverText("Hover");
-		buttonList.add(button);
-		button = new LButton("Hover to change colour",100, 100, 200, 50, Color.RED, ShapeType.Filled);
+		LButton button = new LButton("Button 1", 100, 100, 200, 50, Color.RED, ShapeType.Filled);
+		elementList.add(button);
+		button = new LButton("Button 2",400, 400, 300, 50, Color.PURPLE, ShapeType.Filled);
+		button.setHoverColor(Color.CHARTREUSE);
+		button.setClickedColor(Color.VIOLET);
+		elementList.add(button);
+		LSlider slider = new LSlider(300, 500, 200, 20, Color.BLUE, ShapeType.Filled);
+		sliderList.add(slider);
+		
+		
 		
 	}
 
@@ -35,9 +40,11 @@ public class LeosGUI extends ApplicationAdapter {
 	public void render () {
 		ScreenUtils.clear(Color.WHITE);
 		
-		for(LButton button: buttonList) {
-			button.setFont("AmaticSC-Regular.ttf", Color.GREEN);
+		for(LButton button: elementList) {
 			button.draw(sr, batch);
+		}
+		for(LSlider slider: sliderList) {
+			slider.draw(sr, batch);
 		}
 		
 

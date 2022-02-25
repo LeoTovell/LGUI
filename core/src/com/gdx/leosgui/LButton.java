@@ -13,7 +13,10 @@ import com.badlogic.gdx.graphics.glutils.ShapeRenderer.ShapeType;
 public class LButton {
 	
 	int DEFAULT_FONT_SIZE = 1;
-	String text, defaultText, hoverText, clickedText;
+	String text;
+	String defaultText;
+	String hoverText = "Hover";
+	String clickedText = "Clicked";
 	int x, y, width, height;
 	int leftSide, rightSide, top, bottom;
 	
@@ -23,26 +26,29 @@ public class LButton {
 	
 	
 	public LButton(String text, int x, int y, int width, int height, Color color, ShapeType shapetype) {
-		this.text = text;
+		//Position
 		this.x = x;
 		this.y = y;
 		this.width = width;
 		this.height = height;
+		this.leftSide = x;
+		this.rightSide = x + width;
+		this.top = y + height; //query?
+		this.bottom = y; //query?
+		
+		//Text, Colours
+		this.defaultText = text;
 		this.color = color;
 		this.defaultColor = color;
 		this.shapetype = shapetype;
 		this.colorHover = Color.GRAY;
 		this.clickedColor = Color.BROWN;
 		
-		this.leftSide = x;
-		this.rightSide = x + width;
-		this.top = y + height; //query?
-		this.bottom = y; //query?
-
 		this.font = new BitmapFont();
 		this.font.getData().setScale(DEFAULT_FONT_SIZE);
-		this.font.setColor(Color.BLACK);	
-	}
+		this.font.setColor(Color.BLACK);
+		
+		}
 	
 	public void draw(ShapeRenderer sr, Batch batch) {
 		// Mouse pos?
@@ -84,7 +90,7 @@ public class LButton {
 		
 		// Draw button text
 		
-		GlyphLayout layout = new GlyphLayout(font, text);
+		GlyphLayout layout = new GlyphLayout(font, this.text);
 		float fontX = x + (width - layout.width) / 2;
 		float fontY = y + (height + layout.height) / 2;
 		
@@ -109,6 +115,10 @@ public class LButton {
 	
 	public void setHoverColor(Color color) {
 		this.colorHover = color;
+	}
+	
+	public void setClickedColor(Color color) {
+		this.clickedColor = color;
 	}
 	
 	public void setDefaultText(String text){
