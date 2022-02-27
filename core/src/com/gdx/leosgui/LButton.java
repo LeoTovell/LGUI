@@ -24,6 +24,7 @@ public class LButton {
 	BitmapFont font;
 	Color color, fontColor, colorHover, defaultColor, clickedColor;
 	
+	Object function;
 	
 	public LButton(String text, int x, int y, int width, int height, Color color, ShapeType shapetype) {
 		//Position
@@ -72,6 +73,7 @@ public class LButton {
 		if(clicked) {
 			this.color = this.clickedColor;
 			this.text = this.clickedText;
+			this.function();
 		}
 		else if(hover) {
 			this.color = this.colorHover;
@@ -97,6 +99,22 @@ public class LButton {
 		batch.begin();
 		font.draw(batch, layout, fontX, fontY);
 		batch.end();
+	}
+	
+	interface Callable {
+		public void call(int param);
+	}
+	
+	class Test implements Callable {
+		public void call(int param) {
+			System.out.println(param);
+		}
+	}
+	
+	public class Function {
+		public void invoke(Callable callable, int param) {
+			callable.call(param);
+		}
 	}
 	
 	public void setFont(String filepath, Color color) {
@@ -139,6 +157,10 @@ public class LButton {
 	
 	public void setY(int y) {
 		this.y = y;		
+	}
+		public void onclick(Object function) {
+		this.function = function;
+		
 	}
 	
 }
