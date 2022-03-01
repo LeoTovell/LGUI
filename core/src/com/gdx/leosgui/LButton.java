@@ -24,7 +24,7 @@ public class LButton {
 	BitmapFont font;
 	Color color, fontColor, colorHover, defaultColor, clickedColor;
 	
-	Object function;
+	boolean clicked, hover, deselected;
 	
 	public LButton(String text, int x, int y, int width, int height, Color color, ShapeType shapetype) {
 		//Position
@@ -51,29 +51,37 @@ public class LButton {
 		
 		}
 	
-	public void draw(ShapeRenderer sr, Batch batch) {
-		// Mouse pos?
-		boolean clicked = false;
-		boolean hover = false;
-		boolean M1 = Gdx.input.isButtonPressed(Buttons.LEFT);
+	public boolean isClicked() {
+		clicked = false;
+		hover = false;
 		float mouseX = Gdx.input.getX();
 		float mouseY = 720 - Gdx.input.getY();
-		
+		boolean M1 = Gdx.input.isButtonPressed(Buttons.LEFT);
 		if((mouseX >= leftSide & mouseX <= rightSide) & (mouseY <= top & mouseY >= bottom)) {
 			if(M1) {
 				clicked = true;
+				return true;
 			}
 			else {
 				hover = true;
 			}
 		}
 		
-		// Execute
+		return false;
+	}
+	
+	public boolean isHovered() {
+		return hover;
+	}
+	
+	public void draw(ShapeRenderer sr, Batch batch) {		
+		// Clicked /  Hovered
+		
+		isClicked();
 		
 		if(clicked) {
 			this.color = this.clickedColor;
 			this.text = this.clickedText;
-			this.function();
 		}
 		else if(hover) {
 			this.color = this.colorHover;
@@ -158,9 +166,8 @@ public class LButton {
 	public void setY(int y) {
 		this.y = y;		
 	}
-		public void onclick(Object function) {
-		this.function = function;
+	
 		
-	}
+	
 	
 }
