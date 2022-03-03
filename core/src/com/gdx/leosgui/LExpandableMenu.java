@@ -16,6 +16,7 @@ public class LExpandableMenu {
 	Color backgroundColor, tabColor;
 	
 	boolean moving = false;
+	boolean expanded = true;
 
 	public LExpandableMenu(int x, int y, int width, int height, Color color) {
 		this.x = x;
@@ -40,6 +41,25 @@ public class LExpandableMenu {
 		this.tabColor = color;
 	}
 	
+	public void move() {
+		if(expanded) {
+			if(width > 0) {
+				width -= 1;
+				tabHeight = height/10;
+				tabX = x + width;
+				tabY = y + height - tabHeight;
+				tabWidth = width/5;
+				tabLeftSide = tabX;
+				tabRightSide = tabX + tabWidth;
+				tabTop = tabY;
+				tabBottom = tabY + tabHeight;
+			}
+			else {
+				moving = false;
+			}
+		}
+	}
+	
 	public void draw(ShapeRenderer sr, Batch batch) {
 		
 		if(!moving) {//Check tab clicked?
@@ -59,6 +79,10 @@ public class LExpandableMenu {
 			else {
 				tabColor = backgroundColor;
 			}
+		}
+		
+		if(moving) {
+			move();
 		}
 				
 		sr.begin(ShapeType.Filled);
