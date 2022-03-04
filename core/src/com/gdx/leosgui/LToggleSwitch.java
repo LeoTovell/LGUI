@@ -16,6 +16,7 @@ public class LToggleSwitch {
 	Color toggleColor = Color.LIGHT_GRAY;
 	boolean moving = false;
 	boolean toggleLeft = true;
+	int priority;
 
 	public LToggleSwitch(int x, int y, int width, Color color) {
 		this.x = x;
@@ -89,5 +90,13 @@ public class LToggleSwitch {
 		else {
 			return true;
 		}
+	}
+	
+	public void setPriority(int priority) {
+		this.priority = priority;
+	}
+	
+	public int getPriority() {
+		return this.priority;
 	}
 }

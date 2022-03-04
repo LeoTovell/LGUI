@@ -19,6 +19,7 @@ public class LButton {
 	String clickedText = "Clicked";
 	int x, y, width, height;
 	int leftSide, rightSide, top, bottom;
+	int priority;
 	
 	ShapeType shapetype;
 	BitmapFont font;
@@ -167,6 +168,9 @@ public class LButton {
 		this.y = y;		
 	}
 	
+	public void setPriority(int priority) {
+		this.priority = priority;
+	}
 		
 	
 	

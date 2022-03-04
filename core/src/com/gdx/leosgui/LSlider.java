@@ -26,6 +26,8 @@ public class LSlider {
 	
 	BitmapFont font;
 	int DEFAULT_FONT_SIZE = 1;
+
+	int priority;
 	
 	public LSlider(int x, int y, int width, int height, Color color, ShapeType shapetype) {
 		this.x = x;
@@ -115,5 +117,9 @@ public class LSlider {
 		if(pos.equals("below")) {
 			//Move below
 		}
+	}
+	
+	public void setPriority(int priority) {
+		this.priority = priority;
 	}
 }
